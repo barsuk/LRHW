@@ -114,3 +114,84 @@ puts ' '
   end
 end
 
+puts ' '
+print (1..10).select(&:even?)
+puts ' '
+print ['o', 'A', 'e'].map(&:upcase)
+
+puts ' '
+print ['only', 'Aesopus', 'ends'].map(&:chars)
+puts ' '
+print ['only', 'Aesopus', 'ends'].flat_map(&:chars)
+
+puts ' '
+print (1..10).inject(1) { |r, n| r + n }
+
+puts ''
+(1..22).inject('a') { |r,n| sprintf('_%s_',n)+r }
+# "_22__21__20__19__18__17__16__15__14__13__12__11__10__9__8__7__6__5__4__3__2__1_a"
+
+class P < Struct.new(:x, :y)
+  def *(op)
+    P.new(x * op.x, y*op.y)
+  end
+
+  def +(op)
+    P.new(x + op.x, y+op.y)
+  end
+
+  def inspect
+	"#<P (#{x}, #{y})>"
+  end
+end
+
+a = P.new(4,5)
+b = P.new(6,7)
+puts a+b
+puts a*a
+puts a*b
+puts a
+puts b
+
+a.x = 0
+puts ''
+puts a+b
+puts ''
+puts a*a
+puts ''
+puts a*b
+puts ''
+puts a
+puts b
+
+class P
+	def -(o)
+		P.new(x-o.x, y-o.y)
+	end
+end
+
+puts ''
+puts a-b
+
+puts ''
+NUM = [1,2,5]
+puts NUM.last
+puts NUM.first
+puts NUM[5]
+
+Object.send(:remove_const, :NUM)
+#puts NUM.last
+
+class G
+A = 'A'
+B = 'C'
+end
+
+puts G.new
+puts ''
+puts G::A
+
+#Object.send(:remove_const, :G)
+puts G.new
+
+
