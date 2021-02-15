@@ -258,13 +258,7 @@ class While < Struct.new(:condition, :body)
   end
 end
 
-statement = Sequence.new(
-  Assign.new(:x, Add.new(Number.new(1), Number.new(1))),
-  Assign.new(:y, Add.new(Variable.new(:x), Number.new(3)))
-)
-statement.evaluate({})
-
-While.new(
+statement = While.new(
   LessThan.new(Variable.new(:x), Add.new(Number.new(10),Number.new(1))),
   Assign.new(:x, Add.new(Variable.new(:x), Number.new(3)))
 )
